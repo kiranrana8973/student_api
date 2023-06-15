@@ -2,12 +2,15 @@ const asyncHandler = require("../middleware/async");
 const Student = require("../models/student");
 const Batch = require("../models/batch");
 const Course = require("../models/course");
+const path = require("path");
+const fs = require("fs");
+
 // @desc    Get all students
 // @route   GET /api/v1/students
 // @access  Private
 
 exports.getStudents = asyncHandler(async (req, res, next) => {
-  const students = await Student.find();
+  const students = await Student.find({});
   res.status(200).json({
     success: true,
     count: students.length,
@@ -38,7 +41,6 @@ exports.getStudent = asyncHandler(async (req, res, next) => {
 // @access  Public
 
 exports.register = asyncHandler(async (req, res, next) => {
-  // check for existing student
   const student = await Student.findOne({ username: req.body.username });
   if (student) {
     return res.status(400).send({ message: "Student already exists" });
@@ -103,8 +105,15 @@ exports.deleteStudent = asyncHandler(async (req, res, next) => {
   Student.findByIdAndDelete(req.params.id)
     .then((student) => {
       if (student != null) {
-        var path = path.join(__dirname, "..", student.image);
-        fs.unlink(path2, (err) => {
+        var imagePath = path.join(
+          __dirname,
+          "..",
+          "public",
+          "uploads",
+          student.image
+        );
+        console.log(imagePath);
+        fs.unlink(imagePath, (err) => {
           if (err) {
             console.log(err);
           }
