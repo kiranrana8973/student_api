@@ -9,6 +9,8 @@ const {
   getStudent,
   register,
   login,
+  searchByBatch,
+  searchByCourse,
   updateStudent,
   deleteStudent,
   uploadImage,
@@ -19,6 +21,8 @@ router.post("/register", register);
 router.post("/login", login);
 router.get("/", protect, getStudents);
 router.get("/:id", protect, getStudent);
+router.get("/searchStudentByBatch/:batchId", protect, searchByBatch);
+router.get("/searchStudentByCourse/:courseId", protect, searchByCourse);
 router.put("/:id", protect, updateStudent);
 router.delete("/:id", protect, deleteStudent);
 

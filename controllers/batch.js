@@ -8,7 +8,6 @@ const Batch = require("../models/batch");
 exports.getBatches = asyncHandler(async (req, res, next) => {
   try {
     const batch = await Batch.find({});
-    console.log(batch);
     res.status(200).json({
       success: true,
       count: batch.length,

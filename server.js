@@ -1,7 +1,7 @@
 const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv");
-const morgan = require("morgan"); // morgan middleware
+const morgan = require("morgan");
 const colors = require("colors");
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
