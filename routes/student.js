@@ -19,11 +19,10 @@ const {
 router.post("/uploadImage", upload, uploadImage);
 router.post("/register", register);
 router.post("/login", login);
-router.get("/", protect, getStudents);
-router.get("/:id", protect, getStudent);
-router.get("/searchStudentByBatch/:batchId", protect, searchByBatch);
-router.get("/searchStudentByCourse/:courseId", protect, searchByCourse);
-router.put("/:id", protect, updateStudent);
-router.delete("/:id", protect, deleteStudent);
+router.get("/getAllStudents", protect, getStudents);
+router.get("/getStudentsByBatch/:batchId", protect, searchByBatch);
+router.get("/getStudentsByCourse/:courseId", protect, searchByCourse);
+router.put("/updateStudent/:id", protect, updateStudent);
+router.delete("/deleteStudent/:id", protect, deleteStudent);
 
 module.exports = router;

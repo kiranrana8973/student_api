@@ -10,7 +10,7 @@ const {
   deleteCourse,
 } = require("../controllers/course");
 
-router.get("/", getCourses);
+router.get("/getAllCourse", getCourses);
 router.get("/:id", getCourse);
 
 router.post("/", createCourse);

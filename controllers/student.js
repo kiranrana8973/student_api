@@ -186,6 +186,7 @@ exports.updateStudent = asyncHandler(async (req, res, next) => {
 // @access  Private
 
 exports.deleteStudent = asyncHandler(async (req, res, next) => {
+  console.log(req.params.id);
   Student.findByIdAndDelete(req.params.id)
     .then((student) => {
       if (student != null) {

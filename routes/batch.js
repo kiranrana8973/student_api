@@ -10,10 +10,10 @@ const {
   deleteBatch,
 } = require("../controllers/batch");
 
-router.get("/", getBatches);
+router.get("/getAllBatches", getBatches);
 router.get("/:id", getBatch);
 
-router.post("/", createBatch);
+router.post("/createBatch", createBatch);
 router.put("/:id", protect, updateBatch);
 router.delete("/:id", protect, deleteBatch);
 
