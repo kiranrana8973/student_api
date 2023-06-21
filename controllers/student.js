@@ -42,6 +42,7 @@ exports.getStudent = asyncHandler(async (req, res, next) => {
 
 exports.register = asyncHandler(async (req, res, next) => {
   const student = await Student.findOne({ username: req.body.username });
+  console.log(req.body);
   if (student) {
     return res.status(400).send({ message: "Student already exists" });
   }
