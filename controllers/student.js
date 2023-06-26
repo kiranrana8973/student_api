@@ -69,24 +69,14 @@ exports.login = asyncHandler(async (req, res, next) => {
   if (!username || !password) {
     return res
       .status(400)
-      .send({ message: "Please provide an username and password" });
+      .json({ message: "Please provide a username and password" });
   }
 
-  //Check for Student
-  const student = await Student.findOne({ username: username }).select(
-    "+password"
-  );
+  // Check if student exists
+  const student = await Student.findOne({ username }).select("+password");
 
-  if (!Student) {
-    return res.status(400).send({ message: "Invalid Credentials" });
-    // return next(new ErrorResponse('Invalid credentials', 401));
-  }
-
-  //Check if password matches
-  const isMatch = await student.matchPassword(password);
-
-  if (!isMatch) {
-    return res.status(400).send({ message: "Invalid Credentials" });
+  if (!student || !(await student.matchPassword(password))) {
+    return res.status(401).json({ message: "Invalid credentials" });
   }
 
   sendTokenResponse(student, 200, res);
@@ -110,9 +100,12 @@ exports.searchByBatch = asyncHandler(async (req, res, next) => {
   // });
 
   const batchId = req.params.batchId;
+  // dont show password
+
   Student.find({ batch: batchId })
     .populate("batch", "-__v")
     .populate("course", "-__v")
+    .select("-password -__v")
     .then((student) => {
       res.status(201).json({
         success: true,
@@ -179,6 +172,19 @@ exports.updateStudent = asyncHandler(async (req, res, next) => {
     success: true,
     message: "Student updated successfully",
     data: student,
+  });
+});
+
+// Get current user
+// @route   GET /api/v1/students/me
+// @access  Private
+
+exports.getMe = asyncHandler(async (req, res, next) => {
+  // Show current user
+  const student = await Student.findById(req.params.id);
+
+  res.status(200).json({
+    student
   });
 });
 

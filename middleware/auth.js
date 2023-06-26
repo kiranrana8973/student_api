@@ -14,11 +14,12 @@ exports.protect = asyncHandler(async (req, res, next) => {
     // Set token from Bearer token in header
     token = req.headers.authorization.split(" ")[1];
   }
+
   //Set token from cookie, Check for getCurrentUser, if authentication is removed then also the route will work as the token is in cookie
   // else if(req.cookies.token){
   //     token = req.cookies.token;
   // }
-
+  //
   //Make sure token exist
   if (!token) {
     // return next(new ErrorResponse('Not authorized to access this route', 401));

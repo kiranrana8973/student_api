@@ -14,6 +14,7 @@ const {
   updateStudent,
   deleteStudent,
   uploadImage,
+  getMe,
 } = require("../controllers/student");
 
 router.post("/uploadImage", upload, uploadImage);
@@ -24,5 +25,6 @@ router.get("/getStudentsByBatch/:batchId", protect, searchByBatch);
 router.get("/getStudentsByCourse/:courseId", protect, searchByCourse);
 router.put("/updateStudent/:id", protect, updateStudent);
 router.delete("/deleteStudent/:id", protect, deleteStudent);
+router.get("/getMe/:id", protect, getMe);
 
 module.exports = router;

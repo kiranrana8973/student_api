@@ -83,18 +83,13 @@ exports.updateCourse = async (req, res, next) => {
 // @access  Private
 
 exports.deleteCourse = async (req, res, next) => {
-  try {
-    const course = await Course.findById(req.params.id);
+  // delete course by id
+  await Course.findByIdAndDelete(req.params.id).then((course) => {
     if (!course) {
       return res
         .status(404)
         .json({ message: "Course not found with id of ${req.params.id}" });
     }
-
-    await course.remove();
-
-    res.status(200).json({ success: true, data: {} });
-  } catch (err) {
-    next(err);
-  }
+    res.status(200).json({ success: true, data: course });
+  });
 };

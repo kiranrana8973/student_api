@@ -14,6 +14,11 @@ const studentSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  phone: {
+    type: String,
+    default: null,
+    trim: true,
+  },
   image: {
     type: String,
     default: null,
@@ -53,6 +58,7 @@ studentSchema.pre("save", async function (next) {
 studentSchema.methods.getSignedJwtToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRE,
+    //expiresIn: 5,
   });
 };
 
