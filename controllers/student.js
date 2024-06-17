@@ -180,11 +180,12 @@ exports.updateStudent = asyncHandler(async (req, res, next) => {
 // @access  Private
 
 exports.getMe = asyncHandler(async (req, res, next) => {
-  // Show current user
-  const student = await Student.findById(req.params.id);
+  // Show current user and remove the password
+
+  const student = await Student.findById(req.params.id).select("-password");
 
   res.status(200).json({
-    student
+    student,
   });
 });
 
