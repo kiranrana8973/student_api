@@ -25,6 +25,6 @@ router.get("/getStudentsByBatch/:batchId", protect, searchByBatch);
 router.get("/getStudentsByCourse/:courseId", protect, searchByCourse);
 router.put("/updateStudent/:id", protect, updateStudent);
 router.delete("/deleteStudent/:id", protect, deleteStudent);
-router.get("/getMe/:id", protect, getMe);
+router.get("/getMe", protect, getMe);
 
 module.exports = router;

@@ -4,6 +4,7 @@ const Batch = require("../models/batch");
 const Course = require("../models/course");
 const path = require("path");
 const fs = require("fs");
+const student = require("../models/student");
 
 // @desc    Get all students
 // @route   GET /api/v1/students
@@ -180,13 +181,10 @@ exports.updateStudent = asyncHandler(async (req, res, next) => {
 // @access  Private
 
 exports.getMe = asyncHandler(async (req, res, next) => {
-  // Show current user and remove the password
+  // Show current user and don't show the password
+  const student = await Student.findById(req.user.id).select("-password");
 
-  const student = await Student.findById(req.params.id).select("-password");
-
-  res.status(200).json({
-    student,
-  });
+  res.status(200).json(student);
 });
 
 // @desc    Delete student
