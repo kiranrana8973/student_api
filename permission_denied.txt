@@ -1,0 +1,1 @@
+chmod +x /Users/kiranrana/Documents/Developer/API/student_api/node_modules/.bin/nodemon
