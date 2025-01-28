@@ -82,18 +82,13 @@ exports.updateBatch = asyncHandler(async (req, res, next) => {
 // @access  Private
 
 exports.deleteBatch = asyncHandler(async (req, res, next) => {
-  const batch = await Batch.findById(req.params.id);
-
-  if (!batch) {
-    return res
-      .status(404)
-      .json({ message: "Batch not found with id of ${req.params.id}" });
-  }
-
-  batch.remove();
-
-  res.status(200).json({
-    success: true,
-    data: {},
+  // delete course by id
+  await Batch.findByIdAndDelete(req.params.id).then((batch) => {
+    if (!batch) {
+      return res
+        .status(404)
+        .json({ message: "Batch not found with id of ${req.params.id}" });
+    }
+    res.status(200).json({ success: true, data: batch });
   });
 });
