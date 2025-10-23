@@ -5,11 +5,27 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development & nodemon server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "prod": "NODE_ENV=production node server.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration",
+    "test:coverage": "jest --coverage --coverageDirectory=coverage",
+    "pm2:start": "pm2 start ecosystem.config.js --env production",
+    "pm2:dev": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop student-api",
+    "pm2:restart": "pm2 restart student-api",
+    "pm2:reload": "pm2 reload student-api",
+    "pm2:delete": "pm2 delete student-api",
+    "pm2:logs": "pm2 logs student-api",
+    "pm2:monitor": "pm2 monit",
+    "pm2:list": "pm2 list"
   },
   "author": "Kiran Rana",
   "license": "ISC",
   "dependencies": {
+    "apple-signin-auth": "^2.0.0",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.6",
@@ -18,6 +34,7 @@
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
     "express-mongo-sanitize": "^2.2.0",
+    "google-auth-library": "^10.4.1",
     "helmet": "^6.1.5",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.4",
@@ -26,5 +43,12 @@
     "nodemon": "^3.1.3",
     "slugify": "^1.6.6",
     "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/supertest": "^6.0.3",
+    "jest": "^30.2.0",
+    "mongodb-memory-server": "^10.2.3",
+    "supertest": "^7.1.4"
   }
 }

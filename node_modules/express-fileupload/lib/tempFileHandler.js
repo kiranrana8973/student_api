@@ -14,13 +14,13 @@ module.exports = (options, fieldname, filename) => {
   checkAndMakeDir({ createParentPath: true }, tempFilePath);
 
   debugLog(options, `Temporary file path is ${tempFilePath}`);
- 
-  const hash = crypto.createHash('md5');
+
+  const hash = crypto.createHash(options.hashAlgorithm);
   let fileSize = 0;
   let completed = false;
 
   debugLog(options, `Opening write stream for ${fieldname}->${filename}...`);
-  const writeStream = fs.createWriteStream(tempFilePath);
+  const writeStream = fs.createWriteStream(tempFilePath, { mode: options.tempFilePermissions });
   const writePromise = new Promise((resolve, reject) => {
     writeStream.on('finish', () => resolve());
     writeStream.on('error', (err) => {
