@@ -10,7 +10,20 @@ class UpdateBatch {
   }
 
   async execute(id, updateData) {
-    const batch = await this.batchRepository.update(id, updateData);
+    // Convert date strings to Date objects if needed
+    const processedData = {
+      ...updateData,
+    };
+
+    if (updateData.startDate) {
+      processedData.startDate = new Date(updateData.startDate);
+    }
+
+    if (updateData.endDate) {
+      processedData.endDate = new Date(updateData.endDate);
+    }
+
+    const batch = await this.batchRepository.update(id, processedData);
 
     if (!batch) {
       throw new NotFoundException(`Batch not found with id of ${id}`);

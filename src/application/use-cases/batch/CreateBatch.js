@@ -11,8 +11,15 @@ class CreateBatch {
   }
 
   async execute(batchData) {
+    // Convert date strings to Date objects if needed
+    const processedData = {
+      ...batchData,
+      startDate: batchData.startDate ? new Date(batchData.startDate) : undefined,
+      endDate: batchData.endDate ? new Date(batchData.endDate) : undefined,
+    };
+
     // Create batch entity
-    const batch = new Batch(batchData);
+    const batch = new Batch(processedData);
 
     // Validate batch data
     const validation = batch.validate();

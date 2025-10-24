@@ -14,6 +14,25 @@ const batchSchema = new mongoose.Schema(
       trim: true,
       maxlength: [50, "Batch name cannot be more than 50 characters"],
     },
+    capacity: {
+      type: Number,
+      required: [true, "Please add batch capacity"],
+      min: [1, "Capacity must be at least 1"],
+    },
+    startDate: {
+      type: Date,
+      required: [true, "Please add start date"],
+    },
+    endDate: {
+      type: Date,
+      required: [true, "Please add end date"],
+      validate: {
+        validator: function (value) {
+          return value > this.startDate;
+        },
+        message: "End date must be after start date",
+      },
+    },
   },
   {
     timestamps: true,

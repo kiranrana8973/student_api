@@ -16,6 +16,9 @@ class MongoBatchRepository extends IBatchRepository {
     return new Batch({
       id: doc._id.toString(),
       batchName: doc.batchName,
+      capacity: doc.capacity,
+      startDate: doc.startDate,
+      endDate: doc.endDate,
       createdAt: doc.createdAt,
       updatedAt: doc.updatedAt,
     });
@@ -24,6 +27,9 @@ class MongoBatchRepository extends IBatchRepository {
   async create(batch) {
     const doc = await BatchModel.create({
       batchName: batch.batchName,
+      capacity: batch.capacity,
+      startDate: batch.startDate,
+      endDate: batch.endDate,
     });
 
     return this._toDomainEntity(doc);

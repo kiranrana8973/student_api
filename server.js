@@ -79,7 +79,10 @@ const ROUTE_PREFIX_BATCH = process.env.ROUTE_PREFIX_BATCH || "batch";
 
 // Mount routers
 app.use(`/${API_BASE_PATH}/${API_VERSION}/${ROUTE_PREFIX_AUTH}`, studentRoutes);
-app.use(`/${API_BASE_PATH}/${API_VERSION}/${ROUTE_PREFIX_COURSE}`, courseRoutes);
+app.use(
+  `/${API_BASE_PATH}/${API_VERSION}/${ROUTE_PREFIX_COURSE}`,
+  courseRoutes
+);
 app.use(`/${API_BASE_PATH}/${API_VERSION}/${ROUTE_PREFIX_BATCH}`, batchRoutes);
 
 // Health check endpoint

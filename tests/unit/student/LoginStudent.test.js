@@ -24,11 +24,11 @@ describe("LoginStudent Use Case", () => {
 
   test("should login with correct credentials", async () => {
     await studentRepository.create({
-      _id: '507f1f77bcf86cd799439011',
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john@example.com',
-      password: 'hashed_password123',
+      _id: "507f1f77bcf86cd799439011",
+      firstName: "John",
+      lastName: "Doe",
+      email: "john@example.com",
+      password: "hashed_password123",
     });
 
     const result = await loginStudent.execute(
@@ -50,10 +50,10 @@ describe("LoginStudent Use Case", () => {
 
   test("should throw error with incorrect password", async () => {
     await studentRepository.create({
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john@example.com',
-      password: 'hashed_password123',
+      firstName: "John",
+      lastName: "Doe",
+      email: "john@example.com",
+      password: "hashed_password123",
     });
 
     await expect(
@@ -63,11 +63,11 @@ describe("LoginStudent Use Case", () => {
 
   test("should not include password in response", async () => {
     await studentRepository.create({
-      _id: '507f1f77bcf86cd799439011',
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john@example.com',
-      password: 'hashed_password123',
+      _id: "507f1f77bcf86cd799439011",
+      firstName: "John",
+      lastName: "Doe",
+      email: "john@example.com",
+      password: "hashed_password123",
     });
 
     const result = await loginStudent.execute(

@@ -2,7 +2,7 @@
  * Delete Course Use Case
  */
 
-const NotFoundException = require('../../../domain/exceptions/NotFoundException');
+const NotFoundException = require("../../../domain/exceptions/NotFoundException");
 
 class DeleteCourse {
   constructor(courseRepository) {

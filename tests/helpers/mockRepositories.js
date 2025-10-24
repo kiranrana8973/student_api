@@ -155,18 +155,18 @@ class MockPasswordHasher {
 
 class MockTokenService {
   generateToken(payload) {
-    return 'mock_jwt_token';
+    return "mock_jwt_token";
   }
 
   generate(payload) {
-    return 'mock_jwt_token';
+    return "mock_jwt_token";
   }
 
   verify(token) {
-    if (token === 'mock_jwt_token') {
-      return { id: '507f1f77bcf86cd799439011' };
+    if (token === "mock_jwt_token") {
+      return { id: "507f1f77bcf86cd799439011" };
     }
-    throw new Error('Invalid token');
+    throw new Error("Invalid token");
   }
 }
 

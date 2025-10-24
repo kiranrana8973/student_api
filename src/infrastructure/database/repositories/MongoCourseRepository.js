@@ -16,6 +16,8 @@ class MongoCourseRepository extends ICourseRepository {
     return new Course({
       id: doc._id.toString(),
       courseName: doc.courseName,
+      description: doc.description,
+      duration: doc.duration,
       createdAt: doc.createdAt,
       updatedAt: doc.updatedAt,
     });
@@ -24,6 +26,8 @@ class MongoCourseRepository extends ICourseRepository {
   async create(course) {
     const doc = await CourseModel.create({
       courseName: course.courseName,
+      description: course.description,
+      duration: course.duration,
     });
 
     return this._toDomainEntity(doc);
