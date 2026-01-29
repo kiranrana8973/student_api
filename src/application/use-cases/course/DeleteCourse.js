@@ -13,4 +13,3 @@ class DeleteCourse {
   }
 }
 module.exports = DeleteCourse;
-
