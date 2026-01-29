@@ -1,7 +1,3 @@
-/**
- * Base Domain Exception
- */
-
 class DomainException extends Error {
   constructor(message, statusCode = 500) {
     super(message);
@@ -10,5 +6,4 @@ class DomainException extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 }
-
 module.exports = DomainException;

@@ -1,7 +1,3 @@
-/**
- * Course Controller - Express HTTP Adapter
- */
-
 class CourseController {
   constructor(useCases) {
     this.createCourse = useCases.createCourse;
@@ -10,11 +6,9 @@ class CourseController {
     this.updateCourse = useCases.updateCourse;
     this.deleteCourse = useCases.deleteCourse;
   }
-
   async getCourses(req, res, next) {
     try {
       const courses = await this.getAllCourses.execute();
-
       res.status(200).json({
         success: true,
         count: courses.length,
@@ -24,11 +18,9 @@ class CourseController {
       next(error);
     }
   }
-
   async getCourse(req, res, next) {
     try {
       const course = await this.getCourseById.execute(req.params.id);
-
       res.status(200).json({
         success: true,
         data: course,
@@ -37,11 +29,9 @@ class CourseController {
       next(error);
     }
   }
-
   async create(req, res, next) {
     try {
       const course = await this.createCourse.execute(req.body);
-
       res.status(201).json({
         success: true,
         message: 'Course created successfully',
@@ -51,11 +41,9 @@ class CourseController {
       next(error);
     }
   }
-
   async update(req, res, next) {
     try {
       const course = await this.updateCourse.execute(req.params.id, req.body);
-
       res.status(200).json({
         success: true,
         message: 'Course updated successfully',
@@ -65,11 +53,9 @@ class CourseController {
       next(error);
     }
   }
-
   async delete(req, res, next) {
     try {
       await this.deleteCourse.execute(req.params.id);
-
       res.status(200).json({
         success: true,
         message: 'Course deleted successfully',
@@ -80,5 +66,4 @@ class CourseController {
     }
   }
 }
-
 module.exports = CourseController;

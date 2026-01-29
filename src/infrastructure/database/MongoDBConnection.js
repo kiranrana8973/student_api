@@ -1,11 +1,9 @@
 const mongoose = require("mongoose");
-
 class MongoDBConnection {
   constructor(uri) {
     this.uri = uri;
     this.connection = null;
   }
-
   async connect() {
     try {
       this.connection = await mongoose.connect(this.uri);
@@ -19,7 +17,6 @@ class MongoDBConnection {
       process.exit(1);
     }
   }
-
   async disconnect() {
     try {
       await mongoose.disconnect();
@@ -28,14 +25,11 @@ class MongoDBConnection {
       console.error(`MongoDB disconnection error: ${error.message}`.red);
     }
   }
-
   getConnection() {
     return this.connection;
   }
-
   isConnected() {
     return mongoose.connection.readyState === 1;
   }
 }
-
 module.exports = MongoDBConnection;

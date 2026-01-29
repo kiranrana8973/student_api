@@ -1,13 +1,6 @@
-/**
- * Batch Routes
- */
-
 const express = require('express');
-
 const createBatchRoutes = (batchController, authMiddleware) => {
   const router = express.Router();
-
-  // Bind controller methods to preserve 'this' context
   router.get(
     '/getAllBatches',
     batchController.getBatches.bind(batchController)
@@ -24,8 +17,6 @@ const createBatchRoutes = (batchController, authMiddleware) => {
     authMiddleware.protect(),
     batchController.delete.bind(batchController)
   );
-
   return router;
 };
-
 module.exports = createBatchRoutes;

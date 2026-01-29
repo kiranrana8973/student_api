@@ -1,11 +1,8 @@
 const express = require('express');
 const MulterUploadMiddleware = require('../../../infrastructure/middlewares/MulterUploadMiddleware');
-
 const createStudentRoutes = (studentController, authMiddleware) => {
   const router = express.Router();
-
   const uploadMiddleware = new MulterUploadMiddleware();
-
   router.post(
     '/uploadImage',
     uploadMiddleware.single('profilePicture'),
@@ -45,8 +42,6 @@ const createStudentRoutes = (studentController, authMiddleware) => {
     authMiddleware.protect(),
     studentController.getMe.bind(studentController)
   );
-
   return router;
 };
-
 module.exports = createStudentRoutes;

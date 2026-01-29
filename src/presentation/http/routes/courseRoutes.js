@@ -1,13 +1,6 @@
-/**
- * Course Routes
- */
-
 const express = require('express');
-
 const createCourseRoutes = (courseController, authMiddleware) => {
   const router = express.Router();
-
-  // Bind controller methods to preserve 'this' context
   router.get(
     '/getAllCourses',
     courseController.getCourses.bind(courseController)
@@ -27,8 +20,6 @@ const createCourseRoutes = (courseController, authMiddleware) => {
     authMiddleware.protect(),
     courseController.delete.bind(courseController)
   );
-
   return router;
 };
-
 module.exports = createCourseRoutes;

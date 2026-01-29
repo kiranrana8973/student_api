@@ -1,10 +1,4 @@
-/**
- * Mongoose Batch Model
- * Infrastructure layer - database adapter
- */
-
 const mongoose = require("mongoose");
-
 const batchSchema = new mongoose.Schema(
   {
     batchName: {
@@ -38,8 +32,5 @@ const batchSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
-// Create index for better query performance
 batchSchema.index({ batchName: 1 });
-
 module.exports = mongoose.model("Batch", batchSchema);

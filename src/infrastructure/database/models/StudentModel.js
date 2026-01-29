@@ -1,10 +1,4 @@
-/**
- * Mongoose Student Model
- * Infrastructure layer - database adapter
- */
-
 const mongoose = require('mongoose');
-
 const studentSchema = new mongoose.Schema(
   {
     firstName: {
@@ -40,7 +34,6 @@ const studentSchema = new mongoose.Schema(
     password: {
       type: String,
       required: function() {
-        // Password is only required if not using OAuth
         return !this.authProvider || this.authProvider === 'local';
       },
       minlength: [6, 'Password must be at least 6 characters'],
@@ -74,12 +67,9 @@ const studentSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
-
-// Create indexes for better query performance
 studentSchema.index({ email: 1 });
 studentSchema.index({ batch: 1 });
 studentSchema.index({ course: 1 });
 studentSchema.index({ createdAt: -1 });
 studentSchema.index({ providerId: 1, authProvider: 1 }, { sparse: true }); // Composite index for OAuth lookup
-
 module.exports = mongoose.model('Student', studentSchema);

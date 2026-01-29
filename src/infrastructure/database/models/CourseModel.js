@@ -1,10 +1,4 @@
-/**
- * Mongoose Course Model
- * Infrastructure layer - database adapter
- */
-
 const mongoose = require('mongoose');
-
 const courseSchema = new mongoose.Schema(
   {
     courseName: {
@@ -32,8 +26,5 @@ const courseSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
-// Create index for better query performance
 courseSchema.index({ courseName: 1 });
-
 module.exports = mongoose.model('Course', courseSchema);
